@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('institutes', function (Blueprint $table) {
             $table->id('inst_id');
             $table->string('inst_name', 45);
-            $table->point('location');
+            $table->string('location');
             $table->string('contact_number', 45);
             $table->foreignId('branch_branch_id')->constrained('branches', 'branch_id');
             $table->timestamps();

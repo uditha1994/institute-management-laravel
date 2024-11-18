@@ -15,7 +15,7 @@ class InstituteController extends Controller
     {
         $institutes = Institute::with('branch')->get();
         return view(
-            'institute.index',
+            'institutes.index',
             compact('institutes')
         );
     }
@@ -27,7 +27,7 @@ class InstituteController extends Controller
     {
         $Branches = Branch::All();
         return view(
-            'institute.create',
+            'institutes.create',
             compact('Branches')
         );
     }
@@ -56,7 +56,7 @@ class InstituteController extends Controller
             'branch_branch_id' => $request->branch_branch_id,
         ]);
 
-        return redirect()->route('institute.index')
+        return redirect()->route('institutes.index')
             ->with('success', 'Institute created successfully.');
     }
 
@@ -67,7 +67,7 @@ class InstituteController extends Controller
     public function show(Institute $institute)
     {
         return view(
-            'institute.show',
+            'institutes.show',
             compact('institute')
         );
     }
@@ -80,7 +80,7 @@ class InstituteController extends Controller
         $branches = Branch::all();
         $location = json_decode($institute->location, true);
         return view(
-            'institute.edit',
+            'institutes.edit',
             compact(
                 'institute',
                 'branches',
