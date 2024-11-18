@@ -120,8 +120,10 @@ class InstituteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Institute $institute)
     {
-        //
+        $institute->delete();
+        return redirect()->route('institute.index')->
+            with('sucess', 'Institute deleted successfully..');
     }
 }
