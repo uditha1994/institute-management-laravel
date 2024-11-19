@@ -1,37 +1,25 @@
 @extends('app')
 
 @section('content')
+<div class="container mt-5">
+    <h2>Add New Institute</h2>
 
-<h1>Add New Institute</h1>
-
-
-<form action="{{ route('institutes.store') }}" method="POST">
-    @csrf
-    <div class="mb-3">
-        <label for="inst_name" class="form-lable">Institute Name</label>
-        <input type="text" name="inst_name" id="inst_name" class="form-control" required>
-    </div>
-    <div class="mb-3">
-        <label for="contact_number" class="form-lable">Contact Number</label>
-        <input type="text" name="contact_number" id="contact_number" class="form-control" required>
-    </div>
-    <div class="mb-3">
-        <label for="latitude" class="form-lable">Latitude</label>
-        <input type="text" name="latitude" id="latitude" class="form-control" required>
-    </div>
-    <div class="mb-3">
-        <label for="longitude" class="form-lable">Longitude</label>
-        <input type="text" name="longitude" id="longitude" class="form-control" required>
-    </div>
-    <div class="mb-3">
-        <label for="inst_name" class="form-lable">Branch</label>
-        <select name="branch_branch_id" id="branch_branch_id" class="form-control">
-            @foreach ($branches as $branch)
-                <option value="{{ $branch->branch_id }}">{{ $branch->branch_name }}</option>
-            @endforeach
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
-
+    <form action="{{ route('institutes.store') }}" method="POST">
+        @csrf
+        <div class="mb-3">
+            <label for="inst_name" class="form-label">Institute Name</label>
+            <input type="text" class="form-control" id="inst_name" name="inst_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <textarea class="form-control" id="location" name="location" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="contact_number" class="form-label">Contact Number</label>
+            <input type="text" class="form-control" id="contact_number" name="contact_number" required>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{{ route('institutes.index') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
 @endsection

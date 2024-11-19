@@ -10,7 +10,12 @@
 </head>
 
 <body>
-    <div class="container  mt-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Institute Management</a>
+        </div>
+    </nav>
+    <div class="container  py-4">
         @yield('content')
     </div>
 

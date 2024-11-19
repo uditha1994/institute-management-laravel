@@ -9,6 +9,8 @@ class Institute extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $primaryKey = 'inst_id';
     protected $fillable = ['inst_name', 'location', 'contact_number'];
 

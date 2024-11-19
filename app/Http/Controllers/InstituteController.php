@@ -2,128 +2,67 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Branch;
 use App\Models\Institute;
 use Illuminate\Http\Request;
 
 class InstituteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Display a list of institutes
     public function index()
     {
-        $institutes = Institute::with('branch')->get();
-        return view(
-            'institutes.index',
-            compact('institutes')
-        );
+        $institutes = Institute::all();
+        return view('institutes.index', compact('institutes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Show the form to create a new institute
     public function create()
     {
-        $branches = Branch::All();
-        return view(
-            'institutes.create',
-            compact('branches')
-        );
+        return view('institutes.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Store a new institute
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'inst_name' => 'required|string|max:45',
             'location' => 'required|string',
-            'contact_number' => 'required|string|max:45',
-            'branch_branch_id' => 'required|exists:branches,branch_id',
+            'contact_number' => 'required|string|max:15',
         ]);
 
-        $location = json_encode([
-            'lat' => $request->latitude,
-            'lng' => $request->longitude
-        ]);
+        $institute = Institute::create($validated);
 
-        Institute::create([
-            'inst_name' => $request->inst_name,
-            'location' => $location,
-            'contact_number' => $request->contact_number,
-            'branch_branch_id' => $request->branch_branch_id,
-        ]);
-
+        // Redirect to the edit page of the created institute
         return redirect()->route('institutes.index')
-            ->with('success', 'Institute created successfully.');
+            ->with('success', 'Institute created successfully!');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Institute $institute)
-    {
-        return view(
-            'institutes.show',
-            compact('institute')
-        );
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // Show the edit form for a specific institute
     public function edit(Institute $institute)
     {
-        $branches = Branch::all();
-        $location = json_decode($institute->location, true);
-        return view(
-            'institutes.edit',
-            compact(
-                'institute',
-                'branches',
-                'location'
-            )
-        );
+        return view('institutes.edit', compact('institute'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Institute $Institute)
+    // Update a specific institute
+    public function update(Request $request, Institute $institute)
     {
-        $request->validate([
+        $validated = $request->validate([
             'inst_name' => 'required|string|max:45',
             'location' => 'required|string',
-            'contact_number' => 'required|string|max:45',
-            'branch_branch_id' => 'required|exists:branches,branch_id',
+            'contact_number' => 'required|string|max:15',
         ]);
 
-        $location = json_encode([
-            'lat' => $request->latitude,
-            'lng' => $request->longitude
-        ]);
+        $institute->update($validated);
 
-        $Institute->update([
-            'inst_name' => $request->inst_name,
-            'location' => $location,
-            'contact_number' => $request->contact_number,
-            'branch_branch_id' => $request->branch_branch_id,
-        ]);
-
-        return redirect()->route('institute.index')->
-            with('success', 'Institute updated successfully.');
+        return redirect()->route('institutes.index')
+            ->with('success', 'Institute updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Delete a specific institute
     public function destroy(Institute $institute)
     {
         $institute->delete();
-        return redirect()->route('institute.index')->
-            with('sucess', 'Institute deleted successfully..');
+
+        return redirect()->route('institutes.index')
+            ->with('success', 'Institute deleted successfully!');
     }
 }
