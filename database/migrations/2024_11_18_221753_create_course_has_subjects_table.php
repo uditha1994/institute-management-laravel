@@ -10,11 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('branches', function (Blueprint $table) {
-            $table->id('branch_id');
-            $table->string('branch_name', 45);
+        Schema::create('course_has_subject', function (Blueprint $table) {
+            $table->string('id');
             $table->foreignId('course_course_id')->constrained('courses', 'course_id');
-            $table->timestamps();
+            $table->foreignId('subject_sub_id')->constrained('subjects', 'sub_id');
+            $table->primary('id');
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('branches');
+        Schema::dropIfExists('course_has_subjects');
     }
 };

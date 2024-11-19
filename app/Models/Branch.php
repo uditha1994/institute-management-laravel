@@ -10,14 +10,15 @@ class Branch extends Model
     use HasFactory;
 
     protected $primaryKey = 'branch_id';
+    protected $fillable = ['branch_name', 'address', 'institute_inst_id'];
 
-    public function course()
+    public function institute()
     {
-        return $this->belongsTo(Course::class, 'course_course_id');
+        return $this->belongsTo(Institute::class, 'institute_inst_id');
     }
 
-    public function institutes()
+    public function courses()
     {
-        return $this->hasMany(Institute::class, 'branch_branch_id');
+        return $this->belongsToMany(Course::class, 'course_has_branch', 'branch_id', 'course_id');
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id('sub_id');
             $table->string('sub_name', 45);
             $table->string('credit_hours', 45);
-            $table->timestamps();
+            $table->primary('sub_id');
         });
     }
 

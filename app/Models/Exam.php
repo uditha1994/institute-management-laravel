@@ -10,6 +10,7 @@ class Exam extends Model
     use HasFactory;
 
     protected $primaryKey = 'exam_id';
+    protected $fillable = ['exam_name', 'exam_date', 'total_marks'];
 
     public function results()
     {

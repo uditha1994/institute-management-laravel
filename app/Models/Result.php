@@ -10,6 +10,7 @@ class Result extends Model
     use HasFactory;
 
     protected $primaryKey = 'result_id';
+    protected $fillable = ['grade', 'mark_obtained', 'student_stu_id', 'exam_exam_id'];
 
     public function student()
     {
@@ -23,6 +24,6 @@ class Result extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class, 'subject_result', 'result_result_id', 'subject_sub_id');
+        return $this->belongsToMany(Subject::class, 'subject_has_result', 'result_result_id', 'subject_sub_id');
     }
 }

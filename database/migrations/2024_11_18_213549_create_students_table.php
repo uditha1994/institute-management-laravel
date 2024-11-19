@@ -16,10 +16,10 @@ return new class extends Migration {
             $table->string('last_name', 45);
             $table->date('dob');
             $table->string('gender', 45);
-            $table->string('contact_number', 45);
-            $table->string('email', 45)->unique();
+            $table->integer('contact_number');
+            $table->string('email', 45);
             $table->string('address', 50);
-            $table->timestamps();
+            $table->primary('stu_id');
         });
     }
 

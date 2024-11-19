@@ -25,10 +25,10 @@ class InstituteController extends Controller
      */
     public function create()
     {
-        $Branches = Branch::All();
+        $branches = Branch::All();
         return view(
             'institutes.create',
-            compact('Branches')
+            compact('branches')
         );
     }
 

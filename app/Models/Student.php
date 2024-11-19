@@ -10,6 +10,7 @@ class Student extends Model
     use HasFactory;
 
     protected $primaryKey = 'stu_id';
+    protected $fillable = ['first_name', 'last_name', 'dob', 'gender', 'contact_number', 'email', 'address'];
 
     public function results()
     {
@@ -18,6 +19,6 @@ class Student extends Model
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'course_student', 'student_stu_id', 'course_course_id');
+        return $this->belongsToMany(Course::class, 'course_has_student', 'student_stu_id', 'course_course_id');
     }
 }

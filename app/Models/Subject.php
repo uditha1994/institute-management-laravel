@@ -10,14 +10,15 @@ class Subject extends Model
     use HasFactory;
 
     protected $primaryKey = 'sub_id';
+    protected $fillable = ['sub_name', 'credit_hours'];
 
     public function results()
     {
-        return $this->belongsToMany(Result::class, 'subject_result', 'subject_sub_id', 'result_result_id');
+        return $this->belongsToMany(Result::class, 'subject_has_result', 'subject_sub_id', 'result_result_id');
     }
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'course_subject', 'subject_sub_id', 'course_course_id');
+        return $this->belongsToMany(Course::class, 'course_has_subject', 'subject_sub_id', 'course_course_id');
     }
 }

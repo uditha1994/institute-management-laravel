@@ -10,12 +10,10 @@ class Institute extends Model
     use HasFactory;
 
     protected $primaryKey = 'inst_id';
+    protected $fillable = ['inst_name', 'location', 'contact_number'];
 
-    public function branch()
+    public function branches()
     {
-        return $this->belongsTo(
-            Branch::class,
-            'branch_branch_id'
-        );
+        return $this->hasMany(Branch::class, 'institute_inst_id');
     }
 }

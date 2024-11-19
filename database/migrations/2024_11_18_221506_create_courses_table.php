@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id('course_id');
             $table->string('course_name', 45);
             $table->string('duration', 45);
-            $table->timestamps();
+            $table->primary('course_id');
         });
     }
 
