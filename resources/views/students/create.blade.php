@@ -6,17 +6,6 @@
     <h1>Add NewvStudents</h1>
 </div>
 
-<!-- @if ($error->any())
-    <div class="alert alert-damage">
-        <ul>
-            @foreach ($errors->all as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-
-@endif -->
-
 <form action="{{ route('students.store') }}" method="post">
     @csrf
     <div class="mb-3">
