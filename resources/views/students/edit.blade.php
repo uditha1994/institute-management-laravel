@@ -3,8 +3,9 @@
 @section('content')
 <h1>Edit Student</h1>
 
-<form action="{{ route('students.store') }}" method="post">
+<form action="{{ route('students.update', $student->stu_id) }}" method="post">
     @csrf
+    @method('PUT')
     <div class="mb-3">
         <label for="first_name" class="form-lable">First Name</label>
         <input type="text" name="first_name" id="first_name" class="form-control"
@@ -30,7 +31,7 @@
     <div class="mb-3">
         <label for="contact_number" class="form-lable">Contact Number</label>
         <input type="text" name="contact_number" id="contact_number" class="form-control"
-            value="{{ old('contact_number') }}" required>
+            value="{{ old('contact_number', $student->contact_number) }}" required>
     </div>
     <div class="mb-3">
         <label for="email" class="form-lable">Email</label>
@@ -43,7 +44,7 @@
             value="{{ old('address', $student->address) }}" required>
     </div>
 
-    <button type="submit" class="btn btn-success">Save</button>
+    <button type="submit" class="btn btn-success">Update</button>
 </form>
 
 @endsection

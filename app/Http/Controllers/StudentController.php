@@ -75,7 +75,7 @@ class StudentController extends Controller
             'dob' => 'required|date',
             'gender' => 'required|in:Male,Female,Other',
             'contact_number' => 'required|string|max:15',
-            'email' => 'required|email|unique:students,email' . $student->stu_id,
+            'email' => 'required|email',
             'address' => 'required|string',
         ]);
 
