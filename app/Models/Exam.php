@@ -30,11 +30,6 @@ class Exam extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany(
-            Subject::class,
-            'exam_has_subjects',
-            'exam_id',
-            'subject_id'
-        );
+        return $this->belongsToMany(Subject::class, 'exam_has_subjects', 'exam_id', 'subject_id');
     }
 }

@@ -16,27 +16,26 @@
         </thead>
         <tbody>
             @forelse($exams as $exam)
-                        <tr>
-                            <td>{{ $exam->exam_id }}</td>
-                            <td>{{ $exam->exam_name }}</td>
-                            <td>{{ $exam->exam_date }}</td>
-                            <td>
-                                <a href="{{ route('exams.edit', $exam->exam_id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('exams.destroy', $exam->exam_id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
+                <tr>
+                    <td>{{ $exam->exam_id }}</td>
+                    <td>{{ $exam->exam_name }}</td>
+                    <td>{{ $exam->exam_date }}</td>
+                    <td>
+                        <a href="{{ route('exams.edit', $exam->exam_id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('exams.destroy', $exam->exam_id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
 
-                                <a href="{{ route(
-                    'exam_students.index',
-                    $exam->exam_id
-                ) }}" class="btn btn-sm btn-info">Manage Students</a>
-                                <a href="{{ route('exam_subjects.index', $exam->exam_id) }}" class="btn btn-info btn-sm">Manage
-                                    Subjects</a>
-                            </td>
-                        </tr>
+                        <a href="{{ route('exam_students.index', $exam->exam_id) }}" class="btn btn-sm btn-info">Manage
+                            Students</a>
+
+                        <a href="{{ route('exam_subjects.index', $exam->exam_id) }}" class="btn btn-info btn-sm">Manage
+                            Subjects</a>
+                    </td>
+                </tr>
             @empty
                 <tr>
                     <td colspan="5">No exams found.</td>

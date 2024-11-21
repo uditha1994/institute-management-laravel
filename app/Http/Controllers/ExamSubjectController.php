@@ -14,8 +14,8 @@ class ExamSubjectController extends Controller
 
         $assignedSubjects = $exam->subjects;
         $availableSubjects = Subject::whereNotIn(
-            'sub_id',
-            $assignedSubjects->pluck('sub_id')
+            'subject_id',
+            $assignedSubjects->pluck('subject_id')
         )->get();
 
         return view(
