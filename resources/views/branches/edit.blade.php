@@ -6,7 +6,7 @@
     <h1>Edit Branch</h1>
 </div>
 
-<form action="{{ route('branches.update') }}" method="POST">
+<form action="{{ route('branches.update', $branch->branch_id) }}" method="POST">
     @csrf
     @method('PUT')
     <div class="mb-3">
@@ -21,15 +21,11 @@
     </div>
     <div class="mb-3">
         <label for="institute_inst_id" class="form-label">Institute</label>
-        <select name="institute_inst_id" id="institute_inst_id" class="form-control" required>
-            <option value="">Select a Institute</option>
+        <select name="institute_inst_id" id="institute_inst_id" class="form-select">
             @foreach ($institutes as $institute)
-                        <option value="{{ $institute->inst_id }} {{ old(
-                    'institute_inst_id',
-                    $branch->institute_inst_id
-                ) == $institute->inst_id ? 'selected' : '' }}">
-                            {{ $institute->inst_name }}
-                        </option>
+                <option value="{{ $institute->inst_id }}" {{ old('institute_inst_id', $branch->institute_inst_id) == $institute->inst_id ? 'selected' : '' }}>
+                    {{ $institute->inst_name }}
+                </option>
             @endforeach
         </select>
     </div>
