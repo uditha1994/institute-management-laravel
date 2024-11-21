@@ -32,7 +32,6 @@ class ExamController extends Controller
         $validated = $request->validate([
             'exam_name' => 'required|string|max:255',
             'exam_date' => 'required|date',
-            'total_marks' => 'required|integer|min:0',
         ]);
 
         Exam::create($validated);
@@ -64,7 +63,6 @@ class ExamController extends Controller
         $validated = $request->validate([
             'exam_name' => 'required|string|max:255',
             'exam_date' => 'required|date',
-            'total_marks' => 'required|integer|min:0',
         ]);
 
         $exam->update($validated);
