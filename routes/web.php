@@ -4,6 +4,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamStudentController;
+use App\Http\Controllers\ExamSubjectController;
 use App\Http\Controllers\InstituteController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,7 @@ Route::prefix('exams/{examId}/students')->group(function () {
     Route::delete('/remove/{studentId}', [ExamStudentController::class, 'removeStudent'])
         ->name('exam_students.remove');
 });
+
+Route::get('/exams/{examId}/subjects', [ExamSubjectController::class, 'index'])->name('exam_subjects.index');
+Route::post('/exams/{examId}/subjects', [ExamSubjectController::class, 'addSubject'])->name('exam_subjects.add');
+Route::delete('/exams/{examId}/subjects/{subjectId}', [ExamSubjectController::class, 'removeSubject'])->name('exam_subjects.remove');
