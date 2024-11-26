@@ -34,6 +34,9 @@
 
                         <a href="{{ route('exam_subjects.index', $exam->exam_id) }}" class="btn btn-info btn-sm">Manage
                             Subjects</a>
+
+                        <a href="{{ route('exam_results.index', $exam->exam_id) }}" class="btn btn-success btn-sm">Manage
+                            Results</a>
                     </td>
                 </tr>
             @empty
